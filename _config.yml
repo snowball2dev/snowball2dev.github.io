@@ -1,0 +1,93 @@
+# Site settings
+title: Snowball Blog
+SEOTitle: 滚雪球Zz的博客
+header-img: img/home-bg-o.jpg
+email: snowball2dev@gmail.com
+description: "关于Java后端 | 这里是 @Snowball 的个人博客，与你一起成长。"
+keyword: "Snowball, SnowballZz, SnowballZz的博客, SnowballZz Blog, 博客, 个人网站, 互联网, Java, 后端"
+url: "https://www.snowballzz.com"              # your host, for absolute URL
+baseurl: ""    
+
+
+# SNS settings
+RSS: false
+weibo_username:     #
+zhihu_username:     #
+github_username:    #
+#twitter_username:  #
+facebook_username:  #
+
+# Gems
+# from PR#40, to support local preview for Jekyll 3.0
+# gems: [jekyll-paginate]
+
+# 3.x use this config
+plugins: [jekyll-paginate]
+
+# Build settings
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: pretty
+paginate: 10
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+
+
+
+
+
+
+
+# Markdown settings
+# replace redcarpet to kramdown,
+# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
+# document: http://jekyllrb.com/docs/configuration/#kramdown
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
+
+
+
+# Disqus settings
+#disqus_username: _your_disqus_short_name_
+
+# Duoshuo settings
+duoshuo_username: huxblog
+# Share component is depend on Comment so we can NOT use share only.
+duoshuo_share: false                     # set to false if you want to use Comment without Sharing
+
+
+
+
+# Analytics settings
+# Baidu Analytics
+#ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+# Google Analytics
+#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+#ga_domain: huangxuan.me
+
+
+
+# Sidebar settings
+sidebar: true                           # whether or not using Sidebar.
+sidebar-about-description: "人生就像滚雪球"
+sidebar-avatar: /img/avatar.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+
+
+
+# Featured Tags
+featured-tags: true                     # whether or not using Feature-Tags
+featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
+
+
+
+
+# Friends
+friends: [
+    {
+        title: "",
+        href: "#"
+    }
+]
+
+future: true
