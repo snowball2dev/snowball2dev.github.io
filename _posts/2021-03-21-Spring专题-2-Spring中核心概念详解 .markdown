@@ -4,10 +4,11 @@ title:      "Spring专题-2.Spring中核心概念详解"
 subtitle:   " \"Spring中核心概念详解\""
 date:       2021-03-21 22:30:00
 author:     "snowball"
-header-img: "img/post-bg.jpg"
+header-img: "img/post-bg-js-module.jpg"
 tags:
     - Spring Core
-	- Spring学习笔记
+    - Spring学习笔记
+    - 技术
 ---
 
 <!-- > “Spring. ” -->
