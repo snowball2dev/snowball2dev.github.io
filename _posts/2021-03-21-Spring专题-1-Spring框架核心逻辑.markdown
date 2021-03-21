@@ -4,7 +4,7 @@ title:      "Spring专题-1.Spring框架核心逻辑"
 subtitle:   " \"Spring框架核心逻辑\""
 date:       2021-03-21 22:00:00
 author:     "snowball"
-header-img: "img/post-bg.jpg"
+header-img: "img/home-bg-o.jpg"
 tags:
     - Spring Core
     - Spring学习笔记
