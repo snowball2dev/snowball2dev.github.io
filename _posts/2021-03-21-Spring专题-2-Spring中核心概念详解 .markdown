@@ -7,11 +7,12 @@ author:     "snowball"
 header-img: "img/post-bg.jpg"
 tags:
     - Spring Core
-    - Spring
 	- Spring学习笔记
 ---
 
 <!-- > “Spring. ” -->
+
+## Spring中核心概念详解
 
 代码工程地址：
 https://gitee.com/snowball2dev/spring-notice/chapter-2

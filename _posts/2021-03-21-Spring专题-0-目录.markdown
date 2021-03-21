@@ -7,13 +7,12 @@ author:     "snowball"
 header-img: "img/tag-bg.jpg"
 tags:
     - Spring
-    - 技术
 	- Spring学习笔记
 ---
 
 <!-- > “Spring. ” -->
 
-### Spring专题-目录
+## Spring专题-目录
 
 1. 手写模拟Spring框架核心逻辑
 2. Spring中核心概念详解
