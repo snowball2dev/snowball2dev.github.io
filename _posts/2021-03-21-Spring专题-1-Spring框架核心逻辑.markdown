@@ -15,7 +15,7 @@ tags:
 
 ## Spring框架核心逻辑
 
-[代码工程地址](https://gitee.com/snowball2dev/spring-notice/chapter-2)
+[代码工程地址](https://gitee.com/snowball2dev/spring-notice)
 
 1. 了解Spring工作的大概流程，Spring启动，扫描，创建非懒加载的单例Bean，填充属性（byType，byName），回调Aware接口，初始化
 2. 熟悉BeanDefinition，BeanFactory，Bean等基本概念
