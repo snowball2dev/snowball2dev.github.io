@@ -1,10 +1,10 @@
 ---
 layout:     post
-title:      "Spring专题-目录"
+title:      "Spring专题目录"
 subtitle:   " \"Spring Notice Category\""
 date:       2021-03-21 22:30:00
 author:     "snowball"
-header-img: "img/post-bg.jpg"
+header-img: "img/tag-bg.jpg"
 tags:
     - Spring
     - 技术
