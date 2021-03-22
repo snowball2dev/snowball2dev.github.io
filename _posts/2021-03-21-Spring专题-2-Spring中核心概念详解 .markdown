@@ -173,4 +173,8 @@ Bean工厂的后置处理器，是属于ApplicationContext中的一个属性，�
 
 允许程序员自定义一个对象通过FactoryBean间接的放到Spring容器中成为一个Bean。
 那么它和@Bean的区别是什么？因为@Bean也可以自定义一个对象，让这个对象成为一个Bean。
-区别在于利用FactoryBean可以更加强大，因为你通过定义一个XxFactoryBean的类，可以再去实现Spring中的其他接口，比如如果你实现了BeanFactoryAware接口，那么你可以在你的XxFactoryBean中获取到Bean工厂，从而使用Bean工厂做更多你想做的，而@Bean则不行。
+区别在于利用FactoryBean可以更加强大，因为你通过定义一个XxFactoryBean的类，可以再去实现Spring中的其他接口，比如如果你实现了BeanFactoryAware接口，那么你可以在你的XxFactoryBean中获取到Bean工厂，从而使用Bean工厂做更多你想做的，而@Bean则不行。&factoryBean取FactoryBean对象
+
+**ApplicationContext和BeanFactory架构图**
+
+![img](/img/in-post/post-spring/ApplicationContext和BeanFactory架构图.png)
