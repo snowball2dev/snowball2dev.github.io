@@ -9,18 +9,19 @@ tags:
     - Spring Core
     - Spring学习笔记
     - 技术
+typora-root-url: ..
 ---
 
 <!-- > “Spring. ” -->
 
 ## Spring中核心概念详解
 
-代码工程地址：
-https://gitee.com/snowball2dev/spring-notice
+[代码工程地址](https://gitee.com/snowball2dev/spring-notice)
 
 **BeanDefinition**
 
-声明式和编程式定义
+声明式和编程式两种方式可以定义Bean
+
 定义Bean的方式，<bean/>、@Bean、@Component
 
 ```
@@ -40,14 +41,16 @@ beanDefinition.setScope("prototype"); // 设置作用域
 beanDefinition.setInitMethodName("init"); // 设置初始化方法
 beanDefinition.setAutowireMode(AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE); // 设置自动装配模型
 ```
-总之，我们通过<bean/>，@Bean，@Component等方式所定义的Bean，最终都会被解析为BeanDefinition对象。
-BeanDefinition可以理解为底层源码级别的一个概念，也可以理解为Spring提供的一种API使用的方
+总之，我们通过<bean/>，@Bean，@Component等方式所定义的Bean，最终都会被解析为BeanDefinition对象。BeanDefinition可以理解为底层源码级别的一个概念，也可以理解为Spring提供的一种API使用的方法。
 
 **BeanDefinitionReader**
 
 BeanDefinitionReader分为几类：
-AnnotatedBeanDefinitionReader：
-可以直接把某个类转换为BeanDefinition，并且会解析该类上的注解
+
+**AnnotatedBeanDefinitionReader**
+
+可以直接把某个类转换为BeanDefinition，并且会解析该类上的注解。
+
 注意：它能解析的注解是：@Conditional，@Scope、@Lazy、@Primary、@DependsOn、@Role、@Description
 
 ```
@@ -72,14 +75,14 @@ System.out.println(beanFactory.getBean("user"));
 
 **ClassPathBeanDefinitionScanner**
 
-这个并不是BeanDefinitionReader，但是它的作用和BeanDefinitionReader类似，它可以进行扫描，扫描某个包路径，对扫描到的类进行解析，比如，扫描到的类上如果存在@Component注解，那么就会把这个类解析为一个BeanDefinition
-MetadataReader
-类元数据的读取
+这个并不是BeanDefinitionReader，但是它的作用和BeanDefinitionReader类似，它可以进行扫描，扫描某个包路径，对扫描到的类进行解析，比如，扫描到的类上如果存在@Component注解，那么就会把这个类解析为一个BeanDefinition。
+
+MetadataReader：类元数据的读取
 
 **BeanFactory**
 
 Spring中比较核心的是BeanFactory的实现类是DefaultListableBeanFactory
-![image.png](https://upload-images.jianshu.io/upload_images/3910133-08bb0e73318177e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](/img/in-post/post-spring/BeanFactory.png)
 
 它实现了很多接口，表示，它拥有很多功能：
 1. AliasRegistry：支持别名功能，一个名字可以对应多个别名
@@ -121,7 +124,7 @@ System.out.println(beanFactory.getBeanNamesForType(User.class));
 **ApplicationContext**
 
 首先ApplicationContext是个接口，可以把它理解为一个特殊的BeanFactory
-![image.png](https://upload-images.jianshu.io/upload_images/3910133-ab7e193b7a92deed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](/img/in-post/post-spring/ApplicationContext.png)
 HierarchicalBeanFactory：拥有获取父BeanFactory的功能
 ListableBeanFactory：拥有获取beanNames的功能
 ResourcePatternResolver：资源加载器，可以一次性获取多个资源（文件资源等等）
@@ -135,7 +138,7 @@ MessageSource：拥有国际化功能
 
 **AnnotationConfigApplicationContext**
 
-![image.png](https://upload-images.jianshu.io/upload_images/3910133-d70af68f6deda37c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](/img/in-post/post-spring/AnnotationConfigApplicationContext.png)
 
 1. ConfigurableApplicationContext：继承了ApplicationContext接口，增加了，添加事件监听器、添加BeanFactoryPostProcessor、设置Environment，获取ConfigurableListableBeanFactory等功能
 2. AbstractApplicationContext：实现了ConfigurableApplicationContext接口
@@ -145,7 +148,7 @@ MessageSource：拥有国际化功能
 
 **ClassPathXmlApplicationContext**
 
-![image.png](https://upload-images.jianshu.io/upload_images/3910133-7eb0127dff441ec4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![img](/img/in-post/post-spring/ClassPathXmlApplicationContext.png)
 它也是继承了AbstractApplicationContext，但是相对于AnnotationConfigApplicationContext而言，功能没有AnnotationConfigApplicationContext强大，比如不能注册BeanDefinition
 
 其他功能：
