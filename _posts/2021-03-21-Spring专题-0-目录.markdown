@@ -2,18 +2,20 @@
 layout:     post
 title:      "Spring专题目录"
 subtitle:   " \"Spring Notice Category\""
-date:       2021-03-21 21:30:00
+date:       2021-03-21 21:30:00 +0800
 author:     "snowball"
 header-img: "img/tag-bg.jpg"
 tags:
     - Spring
-    - Spring学习笔记
+    - Spring专题目录
     - 技术
 ---
 
-<!-- > “Spring. ” -->
+<!-- “Spring. ” -->
 
 ## Spring专题-目录
 
 1. 手写模拟Spring框架核心逻辑
 2. Spring中核心概念详解
+
+3. Spring中Bean的生命周期详解

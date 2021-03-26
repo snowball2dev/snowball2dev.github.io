@@ -2,7 +2,7 @@
 layout:     post
 title:      "开篇"
 subtitle:   " \"Hello Blog\""
-date:       2020-04-02 11:00:00
+date:       2020-04-02 11:00:00 +0800
 author:     "snowball"
 header-img: "img/home-bg-o.jpg"
 tags:
