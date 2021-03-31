@@ -18,11 +18,11 @@ typora-root-url: ..
 
 [代码工程地址](https://gitee.com/snowball2dev/spring-notice)
 
-**BeanDefinition**
+### **BeanDefinition**
 
 声明式和编程式两种方式可以定义Bean
 
-定义Bean的方式，<bean/>、@Bean、@Component
+定义Bean的方式，\<bean/>、@Bean、@Component
 
 ```
 // 定义了一个BeanDefinition
@@ -41,13 +41,13 @@ beanDefinition.setScope("prototype"); // 设置作用域
 beanDefinition.setInitMethodName("init"); // 设置初始化方法
 beanDefinition.setAutowireMode(AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE); // 设置自动装配模型
 ```
-总之，我们通过<bean/>，@Bean，@Component等方式所定义的Bean，最终都会被解析为BeanDefinition对象。BeanDefinition可以理解为底层源码级别的一个概念，也可以理解为Spring提供的一种API使用的方法。
+总之，我们通过\<bean/>，@Bean，@Component等方式所定义的Bean，最终都会被解析为BeanDefinition对象。BeanDefinition可以理解为底层源码级别的一个概念，也可以理解为Spring提供的一种API使用的方法。
 
-**BeanDefinitionReader**
+### **BeanDefinitionReader**
 
 BeanDefinitionReader分为几类：
 
-**AnnotatedBeanDefinitionReader**
+#### **AnnotatedBeanDefinitionReader**
 
 可以直接把某个类转换为BeanDefinition，并且会解析该类上的注解。
 
@@ -63,9 +63,9 @@ annotatedBeanDefinitionReader.register(User.class);
 System.out.println(beanFactory.getBean("user"));
 ```
 
-**XmlBeanDefinitionReader**
+#### **XmlBeanDefinitionReader**
 
-可以解析<bean/>标签
+可以解析\<bean/>标签
 ```
 XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
 int i = xmlBeanDefinitionReader.loadBeanDefinitions("spring.xml");
@@ -73,13 +73,13 @@ int i = xmlBeanDefinitionReader.loadBeanDefinitions("spring.xml");
 System.out.println(beanFactory.getBean("user"));
 ```
 
-**ClassPathBeanDefinitionScanner**
+#### **ClassPathBeanDefinitionScanner**
 
 这个并不是BeanDefinitionReader，但是它的作用和BeanDefinitionReader类似，它可以进行扫描，扫描某个包路径，对扫描到的类进行解析，比如，扫描到的类上如果存在@Component注解，那么就会把这个类解析为一个BeanDefinition。
 
 MetadataReader：类元数据的读取
 
-**BeanFactory**
+### **BeanFactory**
 
 Spring中比较核心的是BeanFactory的实现类是DefaultListableBeanFactory
 ![img](/img/in-post/post-spring/BeanFactory.png)
@@ -121,7 +121,7 @@ System.out.println(beanFactory.getBean("user1"));
 System.out.println(beanFactory.getBeanNamesForType(User.class));
 ```
 
-**ApplicationContext**
+### **ApplicationContext**
 
 首先ApplicationContext是个接口，可以把它理解为一个特殊的BeanFactory
 ![img](/img/in-post/post-spring/ApplicationContext.png)
@@ -136,7 +136,7 @@ MessageSource：拥有国际化功能
 1. AnnotationConfigApplicationContext
 2. ClassPathXmlApplicationContext
 
-**AnnotationConfigApplicationContext**
+#### **AnnotationConfigApplicationContext**
 
 ![img](/img/in-post/post-spring/AnnotationConfigApplicationContext.png)
 
@@ -146,35 +146,42 @@ MessageSource：拥有国际化功能
 4. AnnotationConfigRegistry：可以单独注册某个为类为BeanDefinition（可以处理该类上的@Configuration注解，已经可以处理@Bean注解），同时可以扫描
 5. AnnotationConfigApplicationContext：继承了GenericApplicationContext，实现了AnnotationConfigRegistry接口，拥有了以上所有的功能
 
-**ClassPathXmlApplicationContext**
+#### **ClassPathXmlApplicationContext**
 
 ![img](/img/in-post/post-spring/ClassPathXmlApplicationContext.png)
 它也是继承了AbstractApplicationContext，但是相对于AnnotationConfigApplicationContext而言，功能没有AnnotationConfigApplicationContext强大，比如不能注册BeanDefinition
 
 其他功能：
-国际化
-资源加载
-获取运行时环境
-事件发布
-类型转化
-ConversionService
-TypeConverter
 
-**BeanPostProcessor**
+### 国际化
+
+### 资源加载
+
+### 获取运行时环境
+
+### 事件发布
+
+### 类型转化
+
+#### ConversionService
+
+#### TypeConverter
+
+### **BeanPostProcessor**
 
 Bean的后置处理器，可以在创建每个Bean的过程中进行干涉，是属于BeanFactory中一个属性，讲Bean的生命周期中详细讲。
 
-**BeanFactoryPostProcessor**
+### **BeanFactoryPostProcessor**
 
 Bean工厂的后置处理器，是属于ApplicationContext中的一个属性，是ApplicationContext在实例化一个BeanFactory后，可以利用BeanFactoryPostProcessor继续处理BeanFactory。
 程序员可以通过BeanFactoryPostProcessor间接的设置BeanFactory，比如上文中的CustomEditorConfigurer就是一个BeanFactoryPostProcessor，我们可以通过它向BeanFactory中添加自定义的PropertyEditor。
 
-**FactoryBean**
+### **FactoryBean**
 
 允许程序员自定义一个对象通过FactoryBean间接的放到Spring容器中成为一个Bean。
 那么它和@Bean的区别是什么？因为@Bean也可以自定义一个对象，让这个对象成为一个Bean。
 区别在于利用FactoryBean可以更加强大，因为你通过定义一个XxFactoryBean的类，可以再去实现Spring中的其他接口，比如如果你实现了BeanFactoryAware接口，那么你可以在你的XxFactoryBean中获取到Bean工厂，从而使用Bean工厂做更多你想做的，而@Bean则不行。&factoryBean取FactoryBean对象
 
-**ApplicationContext和BeanFactory架构图**
+### **ApplicationContext和BeanFactory架构图**
 
 ![img](/img/in-post/post-spring/ApplicationContext和BeanFactory架构图.png)
