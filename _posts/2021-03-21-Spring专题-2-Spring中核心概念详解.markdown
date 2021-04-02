@@ -151,21 +151,193 @@ MessageSource：拥有国际化功能
 ![img](/img/in-post/post-spring/ClassPathXmlApplicationContext.png)
 它也是继承了AbstractApplicationContext，但是相对于AnnotationConfigApplicationContext而言，功能没有AnnotationConfigApplicationContext强大，比如不能注册BeanDefinition
 
-其他功能：
+#### 国际化
 
-### 国际化
+先定义一个MessageSource:
 
-### 资源加载
+```
+@Bean
+public MessageSource messageSource() {
+    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+    messageSource.setBasename("messages");
+    return messageSource;
+}
+```
 
-### 获取运行时环境
+有了这个Bean，你可以在你任意想要进行国际化的地方使用该MessageSource。
 
-### 事件发布
+同时，因为ApplicationContext也拥有国家化的功能，所以可以直接这么用：
+
+```
+annotationConfigApplicationContext.getMessage("test", null, new Locale("en_CN"))
+```
+
+#### 资源加载
+
+ApplicationContext还拥有资源加载的功能，比如，可以直接利用ApplicationContext获取某个文件的内容：
+
+```
+Resource resource = annotationConfigApplicationContext.getResource("file://D:\\IdeaProjects\\spring-framework\\luban\\src\\main\\java\\com\\luban\\entity\\User.java");
+System.out.println(resource.contentLength());
+```
+
+你可以想想，如果你不使用ApplicationContext，而是自己来实现这个功能，就比较费时间了。
+
+还比如你可以：
+
+```
+Resource resource = annotationConfigApplicationContext.getResource("classpath:com/luban/entity/User.class");
+System.out.println(resource.contentLength());
+```
+
+还可以一次性获取多个：这个功能用到了**策略模式**。
+
+```
+Resource[] resources = annotationConfigApplicationContext.getResources("classpath:com/luban/service/*.class");
+for (Resource resource : resources) {
+    System.out.println(resource.contentLength());
+}
+```
+
+#### 获取运行时环境
+
+```
+// 获取JVM所允许的操作系统的环境
+annotationConfigApplicationContext.getEnvironment().getSystemEnvironment();
+
+// 获取JVM本身的一些属性，包括-D所设置的
+annotationConfigApplicationContext.getEnvironment().getSystemProperties();
+
+// 还可以直接获取某个环境或properties文件中的属性
+annotationConfigApplicationContext.getEnvironment().getProperty("lubanyyy")
+
+可以利用注解来使得某个properties文件中的参数添加到运行时环境中
+@PropertySource("classpath:application.properties")
+```
+
+#### 事件发布
+
+```
+@Bean
+public ApplicationListener applicationListener() {
+    return new ApplicationListener() {
+        @Override
+        public void onApplicationEvent(ApplicationEvent event) {
+            System.out.println("接收到了一个事件");
+        }
+    };
+}
+
+annotationConfigApplicationContext.publishEvent("kkk");
+```
 
 ### 类型转化
 
+#### PropertyEditor
+
+JDK中提供的类型转化工具类
+
+```
+public class StringToUserPropertyEditor extends PropertyEditorSupport implements PropertyEditor {
+
+    @Override
+    public void setAsText(String text) throws IllegalArgumentException {
+        User user = new User();
+        user.setName(text);
+        this.setValue(user);
+    }
+}
+
+StringToUserPropertyEditor propertyEditor = new StringToUserPropertyEditor();
+propertyEditor.setAsText("1");
+User value = (User) propertyEditor.getValue();
+System.out.println(value);
+```
+
+如何向Spring中注册PropertyEditor：
+
+```
+@Bean
+public CustomEditorConfigurer customEditorConfigurer() {
+    CustomEditorConfigurer customEditorConfigurer = new CustomEditorConfigurer();
+    Map<Class<?>, Class<? extends PropertyEditor>> propertyEditorMap = new HashMap<>();
+    propertyEditorMap.put(User.class, StringToUserPropertyEditor.class);
+    customEditorConfigurer.setCustomEditors(propertyEditorMap);
+    return customEditorConfigurer;
+}
+```
+
+假设现在有如下Bean: 那么test属性就能正常的完成属性赋值
+
+```
+@Component
+public class UserService {
+
+    @Value("true")
+    User test;
+
+    public void test() {
+        System.out.println(test);
+    }
+}
+```
+
 #### ConversionService
 
+Spring中提供的类型转化服务，它比PropertyEditor更强大
+
+```
+public class StringToUserConverter implements ConditionalGenericConverter {
+
+    @Override
+    public boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType) {
+        return sourceType.getType().equals(String.class) && targetType.getType().equals(User.class);
+    }
+
+    @Override
+    public Set<ConvertiblePair> getConvertibleTypes() {
+        return Collections.singleton(new ConvertiblePair(String.class, User.class));
+    }
+
+    @Override
+    public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
+        User user = new User();
+        user.setName((String)source);
+        return user;
+    }
+}
+```
+
+```
+DefaultConversionService conversionService = new DefaultConversionService();
+conversionService.addConverter(new StringToUserConverter());
+User value = conversionService.convert("1", User.class);
+System.out.println(value);
+```
+
+如何向Spring中注册ConversionService：
+
+```
+@Bean
+public ConversionServiceFactoryBean conversionService() {
+    ConversionServiceFactoryBean conversionServiceFactoryBean = new ConversionServiceFactoryBean();
+    conversionServiceFactoryBean.setConverters(Collections.singleton(new StringToUserConverter()));
+
+    return conversionServiceFactoryBean;
+}
+```
+
 #### TypeConverter
+
+整合了PropertyEditor和ConversionService的功能，是Spring内部用的
+
+```
+SimpleTypeConverter typeConverter = new SimpleTypeConverter();
+typeConverter.registerCustomEditor(User.class, new StringToUserPropertyEditor());
+//typeConverter.setConversionService(conversionService);
+User value = typeConverter.convertIfNecessary("1", User.class);
+System.out.println(value);
+```
 
 ### **BeanPostProcessor**
 
