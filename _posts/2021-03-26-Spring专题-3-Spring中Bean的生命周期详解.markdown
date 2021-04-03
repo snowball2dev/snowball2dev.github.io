@@ -20,7 +20,6 @@ typora-root-url: ..
 Spring最重要的功能就是帮助程序员创建对象（也就是IOC），而启动Spring就是为创建Bean对象做准备，所以我们先明白Spring到底是怎么去创建Bean的，也就是先弄明白Bean的生命周期。
 
 
-
 Bean的生命周期就是指：**在Spring中，一个Bean是如何生成的，如何销毁的？**
 
 ![Bean的生命周期流程](/img/in-post/post-spring/Bean的生命周期流程.png)
