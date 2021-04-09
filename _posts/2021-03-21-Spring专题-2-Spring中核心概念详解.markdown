@@ -77,7 +77,18 @@ System.out.println(beanFactory.getBean("user"));
 
 这个并不是BeanDefinitionReader，但是它的作用和BeanDefinitionReader类似，它可以进行扫描，扫描某个包路径，对扫描到的类进行解析，比如，扫描到的类上如果存在@Component注解，那么就会把这个类解析为一个BeanDefinition。
 
-MetadataReader：类元数据的读取
+**MetadataReader**：类元数据的读取，通过ASM技术可以在不加载类的情况下获取类的元数据信息
+
+```
+//资源
+Resource getResource();
+
+//类的元数据，类名，接口类等
+ClassMetadata getClassMetadata();
+
+//类的注解元数据
+AnnotationMetadata getAnnotationMetadata();
+```
 
 ### **BeanFactory**
 
@@ -124,12 +135,16 @@ System.out.println(beanFactory.getBeanNamesForType(User.class));
 ### **ApplicationContext**
 
 首先ApplicationContext是个接口，可以把它理解为一个特殊的BeanFactory
-![img](/img/in-post/post-spring/ApplicationContext.png)
-HierarchicalBeanFactory：拥有获取父BeanFactory的功能
+![img](/img/in-post/post-spring/ApplicationContext.png)HierarchicalBeanFactory：拥有获取父BeanFactory的功能
+
 ListableBeanFactory：拥有获取beanNames的功能
+
 ResourcePatternResolver：资源加载器，可以一次性获取多个资源（文件资源等等）
+
 EnvironmentCapable：可以获取运行时环境（没有设置运行时环境功能）
+
 ApplicationEventPublisher：拥有广播事件的功能（没有添加事件监听器的功能）
+
 MessageSource：拥有国际化功能
 
 又两个比较重要的实现类：
