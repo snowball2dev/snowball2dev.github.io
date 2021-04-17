@@ -32,3 +32,11 @@ tags:
 ### [8. Spring解析配置类以及扫描源码解析](https://www.snowballzz.com/2021/04/08/Spring%E4%B8%93%E9%A2%98-8-Spring%E8%A7%A3%E6%9E%90%E9%85%8D%E7%BD%AE%E7%B1%BB%E4%BB%A5%E5%8F%8A%E6%89%AB%E6%8F%8F%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/)
 
 ### [9. Spring中的推断构造方法的底层原理分析](https://www.snowballzz.com/2021/04/12/Spring%E4%B8%93%E9%A2%98-9-Spring%E4%B8%AD%E7%9A%84%E6%8E%A8%E6%96%AD%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/)
+
+### [10. Spring整合Mybatis核心原理分析](https://www.snowballzz.com/2021/04/13/Spring%E4%B8%93%E9%A2%98-10-Spring%E6%95%B4%E5%90%88Mybatis%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/)
+
+### [11. Spring循环依赖源码解析](https://www.snowballzz.com/2021/04/17/Spring%E4%B8%93%E9%A2%98-11-Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/)
+
+### [12. Spring中的AOP底层原理分析](https://www.snowballzz.com/2021/04/17/Spring%E4%B8%93%E9%A2%98-12-Spring%E4%B8%AD%E7%9A%84AOP%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/)
+
+### [13. Spring中事务的底层工作原理](https://www.snowballzz.com/2021/04/17/Spring%E4%B8%93%E9%A2%98-13-Spring%E4%B8%AD%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%BA%95%E5%B1%82%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/)
