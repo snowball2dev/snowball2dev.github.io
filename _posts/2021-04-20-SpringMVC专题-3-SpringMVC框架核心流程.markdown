@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "SpringMVC专题-2.SpringMVC框架核心流程"
+title:      "SpringMVC专题-3.SpringMVC框架核心流程"
 subtitle:   " \"SpringMVC框架核心流程\""
 date:       2021-04-20 16:30:00 +0800
 author:     "snowball"
@@ -624,23 +624,23 @@ protected ModelAndView processHandlerException(HttpServletRequest request, HttpS
 
 创建一个自己异常处理类MyHandlerExceptionResolver，只要实现HandlerExceptionResolver即可，实现的MyHandlerExceptionResolver注入到容器中
 
-### 配置MVC
+### SpringMVC使用配置
 
-JavaConfig方式配置webMvc：
+JavaConfig方式配置WebMvc：
 
 1. webmvcconfigurer接口   
 
 2. 继承WebMvcConfigurerAdapter
 
-3. 继承webmvcconfigurationsupport  核心类   有默认的实现（非空）   
+3. 继承webmvcconfigurationsupport核心类，有默认的实现（非空）   
 
-@EnableWebMvc包含了webmvcconfigurationsupport，WebMvcConfigurerComposite  webmvcconfigurer接口 的聚合类
+@EnableWebMvc导入的Bean基础了webmvcconfigurationsupport，内部包含了WebMvcConfigurerComposite，是webmvcconfigurer接口的聚合类
 
-自定义使用方法
+综合以上，自定义的使用方法有以下2种
 
-  @EnableWebMvc  +  实现webmvcconfigurer接口
+1. @EnableWebMvc  +  实现webmvcconfigurer接口
 
-  继承webmvcconfigurationsupport  +  @Configuarion
+2. 继承webmvcconfigurationsupport  +  @Configuarion
 
 
 
