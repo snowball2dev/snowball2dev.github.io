@@ -358,27 +358,27 @@ tomcat中conf/web.xml
 
 ### Tomca容器初始化
 
-监听器模式   
+Tomcat 设计了 4 种容器，分别是 Engine、Host、Context 和 Wrapper
+
+Context 表示一个 Web 应用程序；Wrapper 表示一个 Servlet，一个 Web 应用程序中可能会有多个 Servlet；Host 代表的是一个虚拟主机，或者说一个站点，可以给 Tomcat 配置多个虚拟主机地址，而一个虚拟主机下可以部署多个 Web 应用程序；Engine 表示引擎，用来管理多个虚拟站点，一个 Service 最多只能有一个 Engine。
+
+![tomcat容器层次](/img/in-post/post-springmvc/tomcat容器层次.png)
+
+**监听器模式**   
 
 addWebapp
 
-1、Server  --->  Service  -->  Connector  Engine addChild--->  context(servlet容器)
+1、Server  --->  Service  -->  Connector  --> Engine--->  context(servlet容器)
 
 2、LifecycleListener监听器：ContextConfig  放在 context里面
 
-向内引爆
+**向内引爆**
 
-StandardServer.startInternal  -->StandardService.startInternal-->StandardContext
+StandardServer.startInternal  -->StandardService.startInternal-->Engine.startInternal-->StandardContext.startInternal->ContextConfig.webconfig()
 
-Container-->Engine
+模板类：LifecycleBase.startInternal：容器启动
 
-模板类：LifecycleBase
-
-startInternal：容器启动
-
-webconfig()
-
-fireLifecycleEvent发布监听，通过监听器完成servlet包装成了wrapper  context
+fireLifecycleEvent发布监听，通过监听器完成servlet包装成了wrapper 
 
 ![tomcat容器初始化](/img/in-post/post-springmvc/tomcat容器初始化.png)
 
