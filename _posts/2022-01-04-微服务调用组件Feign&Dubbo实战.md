@@ -2,7 +2,7 @@
 layout:     post
 title:      "微服务调用组件Feign&Dubbo实战"
 subtitle:   " \"微服务调用组件Feign&Dubbo实战\""
-date:       2021-01-04 18:30:00 +0800
+date:       2022-01-04 18:30:00 +0800
 author:     "snowball"
 header-img: "img/home-bg.jpg"
 tags:
