@@ -63,7 +63,7 @@ Feign可以做到使用 HTTP 请求远程服务时就像调用本地方法一样
 
 如下图：
 
-![Feign架构](.\Feign架构.png)
+![Feign架构](/img/in-post/post-micro-service-feign/Feign架构.png)
 
 #### 2.Fegin使用详解
 
